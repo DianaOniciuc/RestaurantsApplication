@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RestaurantsApplication</string>
+    <string name="title">Restaurant Title</string>
+    <string name="subtitle">Restaurant subtitle text text text text text more text text text more text text text more text text text</string>
+    <string name="restaurants_activity">Restaurants Activity</string>
+    <string name="splash_activity">Splash Activity</string>
 </resources>
