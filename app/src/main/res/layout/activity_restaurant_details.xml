@@ -1,108 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/details_scroll_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/appCompatImageView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/details_constraint_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/map_guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
-
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/restaurant_detail_title"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:paddingTop="@dimen/padding_16"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:visibility="visible"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintStart_toStartOf="@+id/margin_start_guideline"
-        app:layout_constraintEnd_toStartOf="@id/margin_end_guideline"
-        app:layout_constraintTop_toBottomOf="@+id/map_guideline"
-        tools:text="@tools:sample/lorem/random" />
+        >
 
-    <View
-        android:id="@+id/separator"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/separator_dim"
-        app:layout_constrainedWidth="true"
-        android:background="@android:color/darker_gray"
-        android:layout_marginBottom="@dimen/margin_8"
-        app:layout_constraintTop_toBottomOf="@id/restaurant_detail_title"
-        app:layout_constraintStart_toEndOf="@id/margin_start_guideline"
-        app:layout_constraintEnd_toStartOf="@id/margin_end_guideline"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/restaurant_gallery_rv"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/background_photo_height"
-        app:layout_constrainedWidth="true"
-        android:scrollbars="horizontal"
-        android:layout_marginTop="@dimen/margin_8"
-        android:layout_marginBottom="@dimen/margin_8"
-        app:layout_constraintTop_toBottomOf="@id/separator"
-        app:layout_constraintStart_toEndOf="@id/margin_start_guideline"
-        app:layout_constraintEnd_toStartOf="@id/margin_end_guideline"
-        tools:listitem="@layout/item_restaurant_photo"
-        tools:itemCount="5"/>
-
-    <View
-        android:id="@+id/separator2"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/separator_dim"
-        android:background="@android:color/darker_gray"
-        app:layout_constrainedWidth="true"
-        android:layout_marginBottom="@dimen/margin_8"
-        android:layout_marginTop="@dimen/margin_8"
-        app:layout_constraintTop_toBottomOf="@id/restaurant_gallery_rv"
-        app:layout_constraintStart_toEndOf="@id/margin_start_guideline"
-        app:layout_constraintEnd_toStartOf="@id/margin_end_guideline"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/restaurant_detail_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constrainedWidth="true"
-        android:layout_marginTop="@dimen/margin_8"
-        app:layout_constraintStart_toStartOf="@+id/margin_start_guideline"
-        app:layout_constraintEnd_toStartOf="@id/margin_end_guideline"
-        app:layout_constraintTop_toBottomOf="@id/separator2"
-        android:paddingBottom="@dimen/padding_16"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        tools:text="@tools:sample/lorem/random"
-        />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/map_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.4"
-        />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/margin_start_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/padding_16" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/margin_end_guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/padding_16" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toEndOf="@id/details_constraint_layout"
+            app:layout_constraintStart_toStartOf="@id/details_constraint_layout"
+            app:layout_constraintTop_toTopOf="@id/details_constraint_layout"
+            app:layout_constraintBottom_toTopOf="@id/map_guideline"
+            tools:src="@tools:sample/avatars"
+            />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/restaurant_detail_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingTop="@dimen/padding_16"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:visibility="visible"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/margin_start_guideline"
+            app:layout_constraintEnd_toStartOf="@id/margin_end_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/map_guideline"
+            app:layout_constraintBottom_toTopOf="@id/separator"
+            tools:text="@tools:sample/lorem/random" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/separator_dim"
+            app:layout_constrainedWidth="true"
+            android:background="@android:color/darker_gray"
+            android:layout_marginBottom="@dimen/margin_8"
+            app:layout_constraintTop_toBottomOf="@id/restaurant_detail_title"
+            app:layout_constraintStart_toEndOf="@id/margin_start_guideline"
+            app:layout_constraintEnd_toStartOf="@id/margin_end_guideline"
+            app:layout_constraintBottom_toTopOf="@id/restaurant_gallery_rv"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurant_gallery_rv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/background_photo_height"
+            app:layout_constrainedWidth="true"
+            android:scrollbars="horizontal"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginBottom="@dimen/margin_8"
+            app:layout_constraintTop_toBottomOf="@id/separator"
+            app:layout_constraintStart_toEndOf="@id/margin_start_guideline"
+            app:layout_constraintEnd_toStartOf="@id/margin_end_guideline"
+            app:layout_constraintBottom_toTopOf="@id/separator2"
+            tools:listitem="@layout/item_restaurant_photo"
+            tools:itemCount="5"/>
+
+        <View
+            android:id="@+id/separator2"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/separator_dim"
+            android:background="@android:color/darker_gray"
+            app:layout_constrainedWidth="true"
+            android:layout_marginBottom="@dimen/margin_8"
+            android:layout_marginTop="@dimen/margin_8"
+            app:layout_constraintTop_toBottomOf="@id/restaurant_gallery_rv"
+            app:layout_constraintStart_toEndOf="@id/margin_start_guideline"
+            app:layout_constraintEnd_toStartOf="@id/margin_end_guideline"
+            app:layout_constraintBottom_toTopOf="@id/restaurant_detail_subtitle"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/restaurant_detail_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constrainedWidth="true"
+            android:layout_marginTop="@dimen/margin_8"
+            app:layout_constraintStart_toStartOf="@+id/margin_start_guideline"
+            app:layout_constraintEnd_toStartOf="@id/margin_end_guideline"
+            app:layout_constraintTop_toBottomOf="@id/separator2"
+            app:layout_constraintBottom_toBottomOf="@id/details_constraint_layout"
+            android:paddingBottom="@dimen/padding_16"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            tools:text="@tools:sample/lorem/random"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/map_guideline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/details_constraint_layout"
+            app:layout_constraintEnd_toEndOf="@id/details_constraint_layout"
+            app:layout_constraintTop_toBottomOf="@id/appCompatImageView"
+            app:layout_constraintBottom_toTopOf="@id/restaurant_detail_title"
+            app:layout_constraintGuide_begin="200dp"
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_start_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/padding_16" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/margin_end_guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/padding_16" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

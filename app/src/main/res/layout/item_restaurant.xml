@@ -29,6 +29,7 @@
         android:paddingEnd="@dimen/padding_16"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:visibility="visible"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/list_item_icon"
         app:layout_constraintTop_toTopOf="parent"

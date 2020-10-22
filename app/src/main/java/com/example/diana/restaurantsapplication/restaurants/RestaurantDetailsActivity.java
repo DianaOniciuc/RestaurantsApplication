@@ -2,12 +2,15 @@ package com.example.diana.restaurantsapplication.restaurants;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+
 import android.view.MenuItem;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.constraintlayout.widget.Guideline;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +21,8 @@ import static com.example.diana.restaurantsapplication.util.Constants.RESTAURANT
 
 public class RestaurantDetailsActivity extends AppCompatActivity {
     ItemRestaurant restaurant;
+    private int toolbarSize;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +36,8 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         AppCompatTextView title = findViewById(R.id.restaurant_detail_title);
         RecyclerView photos = findViewById(R.id.restaurant_gallery_rv);
         AppCompatTextView subtitle = findViewById(R.id.restaurant_detail_subtitle);
+        Guideline mapGuideline = findViewById(R.id.map_guideline);
+        setupGuideline(mapGuideline);
 
         Intent intent = getIntent();
         if(intent.hasExtra(RESTAURANT_KEY)){
@@ -48,6 +55,22 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         photos.setAdapter(adapter);
 
         setupSupportActionBar();
+
+    }
+
+    // TODO: Find a better way to set the height of the map to 40% of the screen size, this is not quite right
+    private void setupGuideline(Guideline mapGuideline) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int height = metrics.heightPixels;
+
+        getWindowManager().getDefaultDisplay().getRealMetrics(metrics);
+        int realHeight = metrics.heightPixels;
+        if (realHeight > height) {
+            toolbarSize = realHeight - height;
+        }
+
+        mapGuideline.setGuidelineBegin((int) ((height-toolbarSize)*0.4));
 
     }
 

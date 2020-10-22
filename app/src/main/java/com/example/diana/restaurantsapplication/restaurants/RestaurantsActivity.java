@@ -3,7 +3,6 @@ package com.example.diana.restaurantsapplication.restaurants;
 import android.os.Bundle;
 import android.os.Handler;
 import android.transition.Fade;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
@@ -21,7 +20,6 @@ import java.util.Arrays;
 public class RestaurantsActivity extends AppCompatActivity {
 
     private ContentLoadingProgressBar progressBar;
-    public static final String TAG ="progress bar";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
