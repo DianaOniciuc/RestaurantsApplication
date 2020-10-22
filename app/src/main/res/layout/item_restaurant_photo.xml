@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/background_photo_width"
+    android:layout_height="@dimen/background_photo_height"
+    android:background="@color/background_photo_color"
+    android:layout_marginEnd="@dimen/margin_8"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/restaurant_photo"
+        android:layout_width="@dimen/photo_dim"
+        android:layout_height="@dimen/photo_dim"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

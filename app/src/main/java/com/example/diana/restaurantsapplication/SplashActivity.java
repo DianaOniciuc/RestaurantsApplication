@@ -20,32 +20,25 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         setContentView(R.layout.activity_splash);
 
         initView();
-        setupWindowAnimations();
+        //setupWindowAnimations();
         startRestaurantActivity();
     }
 
     private void startRestaurantActivity() {
 
-/*        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashActivity.this, RestaurantsActivity.class);
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
-                finish();
-            }
-        }, 1000);*/
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(SplashActivity.this, RestaurantsActivity.class);
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
+            finish();
+        }, 1000);
 
-        Intent intent = new Intent(SplashActivity.this, RestaurantsActivity.class);
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle());
-        finish();
     }
 
     private void setupWindowAnimations() {
-        Fade fade = new Fade(Gravity.LEFT);
+        Fade fade = new Fade(Gravity.START);
         fade.setDuration(1000);
         getWindow().setExitTransition(fade);
     }
