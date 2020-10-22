@@ -54,4 +54,5 @@ public class ItemRestaurant implements Serializable {
     public void setPhotos(ArrayList<String> photos) {
         this.photos = photos;
     }
+
 }

@@ -46,4 +46,5 @@ public class SplashActivity extends AppCompatActivity {
     private void initView() {
         TextView tvSplash = findViewById(R.id.splashTV);
     }
+
 }

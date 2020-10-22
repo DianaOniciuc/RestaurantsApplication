@@ -76,4 +76,5 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         intent.putExtra(RESTAURANT_KEY, restaurant);
         context.startActivity(intent);
     }
+
 }

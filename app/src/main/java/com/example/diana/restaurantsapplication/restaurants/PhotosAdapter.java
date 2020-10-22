@@ -52,4 +52,5 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.PhotoViewH
             photo = itemView.findViewById(R.id.restaurant_photo);
         }
     }
+
 }
