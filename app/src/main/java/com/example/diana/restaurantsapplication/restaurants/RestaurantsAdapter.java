@@ -1,7 +1,6 @@
 package com.example.diana.restaurantsapplication.restaurants;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +12,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.diana.restaurantsapplication.R;
+import com.example.diana.restaurantsapplication.models.ItemRestaurant;
 
 import java.util.ArrayList;
 
-import static androidx.core.content.ContextCompat.startActivity;
-import static com.example.diana.restaurantsapplication.util.Constants.RESTAURANT_KEY;
 
 public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.RestaurantsViewHolder>{
 
     private ArrayList<ItemRestaurant> restaurants;
     private Context context;
+    private OnRestaurantClickListener onRestaurantClickListener;
 
-    public RestaurantsAdapter(ArrayList<ItemRestaurant> restaurants, Context context) {
+    public RestaurantsAdapter(ArrayList<ItemRestaurant> restaurants, Context context, OnRestaurantClickListener onRestaurantClickListener) {
         this.restaurants = restaurants;
         this.context = context;
+        this.onRestaurantClickListener = onRestaurantClickListener;
         notifyDataSetChanged();
     }
 
@@ -34,7 +34,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     @Override
     public RestaurantsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_restaurant, parent, false);
-        return new RestaurantsViewHolder(view);
+        return new RestaurantsViewHolder(view, onRestaurantClickListener);
     }
 
     @Override
@@ -58,23 +58,21 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         private AppCompatImageView image;
         private TextView title;
         private TextView subtitle;
+        OnRestaurantClickListener onRestaurantClickListener;
 
-        public RestaurantsViewHolder(@NonNull View itemView) {
+        public RestaurantsViewHolder(@NonNull View itemView, OnRestaurantClickListener onRestaurantClickListener) {
             super(itemView);
             image= itemView.findViewById(R.id.list_item_icon);
             title = itemView.findViewById(R.id.list_item_title);
             subtitle = itemView.findViewById(R.id.list_item_subtitle);
+            this.onRestaurantClickListener = onRestaurantClickListener;
             itemView.setOnClickListener(v -> {
-                ItemRestaurant restaurant = restaurants.get(getAdapterPosition());
-                onItemClicked(restaurant);
+                onRestaurantClickListener.onRestaurantClick(getAdapterPosition());
             });
         }
     }
 
-    private void onItemClicked(ItemRestaurant restaurant) {
-        Intent intent = new Intent(context, RestaurantDetailsActivity.class);
-        intent.putExtra(RESTAURANT_KEY, restaurant);
-        context.startActivity(intent);
+    public interface OnRestaurantClickListener{
+        void onRestaurantClick(int position);
     }
-
 }

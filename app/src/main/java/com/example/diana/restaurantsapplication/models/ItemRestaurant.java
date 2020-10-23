@@ -1,4 +1,4 @@
-package com.example.diana.restaurantsapplication.restaurants;
+package com.example.diana.restaurantsapplication.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,11 +17,6 @@ public class ItemRestaurant implements Serializable {
         this.photos = photos;
     }
 
-    public ItemRestaurant(String image, String title, String subtitle) {
-        this.image = image;
-        this.title = title;
-        this.subtitle = subtitle;
-    }
 
     public String getImage() {
         return image;

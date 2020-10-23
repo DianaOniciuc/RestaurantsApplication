@@ -18,7 +18,7 @@ buildscript {
 
         okHttpVersion = '4.6.0'
         gsonVersion = '2.8.6'
-        retrofitVersion = '2.8.1'
+        retrofitVersion = '2.9.0'
 
         rxJavaVersion = '2.2.19'
         rxAndroidVersion = '2.1.1'

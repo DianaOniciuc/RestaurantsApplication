@@ -1,5 +1,6 @@
 package com.example.diana.restaurantsapplication.restaurants;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.transition.Fade;
@@ -13,13 +14,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diana.restaurantsapplication.R;
+import com.example.diana.restaurantsapplication.models.ItemRestaurant;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class RestaurantsActivity extends AppCompatActivity {
+import static com.example.diana.restaurantsapplication.util.Constants.RESTAURANT_KEY;
+
+public class RestaurantsActivity extends AppCompatActivity implements RestaurantsAdapter.OnRestaurantClickListener {
 
     private ContentLoadingProgressBar progressBar;
+    private ArrayList<ItemRestaurant> restaurants;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +52,8 @@ public class RestaurantsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
 
-        RestaurantsAdapter adapter = new RestaurantsAdapter(getMockedData(), this);
+        restaurants = getMockedData();
+        RestaurantsAdapter adapter = new RestaurantsAdapter(restaurants, this, this);
         recyclerView.setAdapter(adapter);
 
     }
@@ -79,8 +86,6 @@ public class RestaurantsActivity extends AppCompatActivity {
                 progressBar.show();
                 progressBar.hide();
             }, 1500);
-
-
     }
 
 
@@ -91,4 +96,10 @@ public class RestaurantsActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onRestaurantClick(int position) {
+        Intent intent = new Intent(this, RestaurantDetailsActivity.class);
+        intent.putExtra(RESTAURANT_KEY,restaurants.get(position));
+        startActivity(intent);
+    }
 }

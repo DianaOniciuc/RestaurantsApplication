@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diana.restaurantsapplication.R;
+import com.example.diana.restaurantsapplication.models.ItemRestaurant;
 
 import static com.example.diana.restaurantsapplication.util.Constants.RESTAURANT_KEY;
 
@@ -36,6 +37,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         AppCompatTextView title = findViewById(R.id.restaurant_detail_title);
         RecyclerView photos = findViewById(R.id.restaurant_gallery_rv);
         AppCompatTextView subtitle = findViewById(R.id.restaurant_detail_subtitle);
+
         Guideline mapGuideline = findViewById(R.id.map_guideline);
         setupGuideline(mapGuideline);
 
@@ -58,7 +60,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
     }
 
-    // TODO: Find a better way to set the height of the map to 40% of the screen size, this is not quite right
+
     private void setupGuideline(Guideline mapGuideline) {
         DisplayMetrics metrics = new DisplayMetrics();
         this.getWindowManager().getDefaultDisplay().getMetrics(metrics);
