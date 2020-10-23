@@ -12,18 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.diana.restaurantsapplication.R;
-import com.example.diana.restaurantsapplication.models.ItemRestaurant;
+import com.example.diana.restaurantsapplication.models.Restaurant;
 
 import java.util.ArrayList;
 
 
 public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.RestaurantsViewHolder>{
 
-    private ArrayList<ItemRestaurant> restaurants;
+    private ArrayList<Restaurant> restaurants;
     private Context context;
+
+    public void setRestaurants(ArrayList<Restaurant> restaurants) {
+        this.restaurants = restaurants;
+    }
+
     private OnRestaurantClickListener onRestaurantClickListener;
 
-    public RestaurantsAdapter(ArrayList<ItemRestaurant> restaurants, Context context, OnRestaurantClickListener onRestaurantClickListener) {
+    public RestaurantsAdapter(ArrayList<Restaurant> restaurants, Context context, OnRestaurantClickListener onRestaurantClickListener) {
         this.restaurants = restaurants;
         this.context = context;
         this.onRestaurantClickListener = onRestaurantClickListener;
@@ -39,13 +44,13 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull RestaurantsViewHolder holder, int position) {
-        ItemRestaurant restaurant = restaurants.get(position);
+        Restaurant restaurant = restaurants.get(position);
 
         Glide.with(context)
-                .load(restaurant.getImage())
+                .load(restaurant.getImagePath())
                 .into(holder.image);
-        holder.title.setText(restaurant.getTitle());
-        holder.subtitle.setText(restaurant.getSubtitle());
+        holder.title.setText(restaurant.getName());
+        holder.subtitle.setText(restaurant.getDescription());
     }
 
     @Override

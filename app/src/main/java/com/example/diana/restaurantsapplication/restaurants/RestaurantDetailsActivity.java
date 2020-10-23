@@ -16,12 +16,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diana.restaurantsapplication.R;
-import com.example.diana.restaurantsapplication.models.ItemRestaurant;
+import com.example.diana.restaurantsapplication.models.Photo;
+import com.example.diana.restaurantsapplication.models.Restaurant;
+
+import java.util.ArrayList;
 
 import static com.example.diana.restaurantsapplication.util.Constants.RESTAURANT_KEY;
 
 public class RestaurantDetailsActivity extends AppCompatActivity {
-    ItemRestaurant restaurant;
+    Restaurant restaurant;
     private int toolbarSize;
 
     @Override
@@ -43,17 +46,17 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if(intent.hasExtra(RESTAURANT_KEY)){
-             restaurant = (ItemRestaurant) intent.getSerializableExtra(RESTAURANT_KEY);
+             restaurant = (Restaurant) intent.getSerializableExtra(RESTAURANT_KEY);
         }
 
         image.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_launcher_background));
-        title.setText(restaurant.getTitle());
-        subtitle.setText(restaurant.getSubtitle());
+        title.setText(restaurant.getName());
+        subtitle.setText(restaurant.getDescription());
 
         photos.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         photos.setHasFixedSize(true);
 
-        PhotosAdapter adapter = new PhotosAdapter(restaurant.getPhotos(),this);
+        PhotosAdapter adapter = new PhotosAdapter((ArrayList<Photo>) restaurant.getPhotos(),this);
         photos.setAdapter(adapter);
 
         setupSupportActionBar();

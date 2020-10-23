@@ -4,4 +4,5 @@
     <string name="subtitle">Restaurant subtitle text text text text text more text text text more text text text more text text text</string>
     <string name="restaurants_activity">Restaurants Activity</string>
     <string name="splash_activity">Splash Activity</string>
+    <string name="get_restaurants_error">Error getting restaurant list</string>
 </resources>

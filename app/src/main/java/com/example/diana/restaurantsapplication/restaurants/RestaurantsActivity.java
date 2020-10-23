@@ -2,10 +2,12 @@ package com.example.diana.restaurantsapplication.restaurants;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+
 import android.transition.Fade;
+
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,17 +17,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diana.restaurantsapplication.R;
 import com.example.diana.restaurantsapplication.models.ItemRestaurant;
+import com.example.diana.restaurantsapplication.models.Restaurant;
+import com.example.diana.restaurantsapplication.server.RestaurantsServiceProvider;
 
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 import static com.example.diana.restaurantsapplication.util.Constants.RESTAURANT_KEY;
 
 public class RestaurantsActivity extends AppCompatActivity implements RestaurantsAdapter.OnRestaurantClickListener {
 
     private ContentLoadingProgressBar progressBar;
-    private ArrayList<ItemRestaurant> restaurants;
+    private ArrayList<Restaurant> restaurants;
+    private RestaurantsAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,10 +63,30 @@ public class RestaurantsActivity extends AppCompatActivity implements Restaurant
         recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
 
-        restaurants = getMockedData();
-        RestaurantsAdapter adapter = new RestaurantsAdapter(restaurants, this, this);
+        //restaurants = getMockedData();
+        restaurants = getRestaurantsRetrofit();
+        adapter = new RestaurantsAdapter(restaurants, this, this);
         recyclerView.setAdapter(adapter);
+    }
 
+    private ArrayList<Restaurant> getRestaurantsRetrofit() {
+        RestaurantsServiceProvider.createRestaurantService().getRestaurants().enqueue(new Callback<List<Restaurant>>() {
+            @Override
+            public void onResponse(Call<List<Restaurant>> call, Response<List<Restaurant>> response) {
+                restaurants = (ArrayList<Restaurant>) response.body();
+                if(restaurants!=null){
+                    adapter.setRestaurants(restaurants);
+                    adapter.notifyDataSetChanged();
+                    progressBar.hide();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Restaurant>> call, Throwable t) {
+                Toast.makeText(RestaurantsActivity.this, R.string.get_restaurants_error, Toast.LENGTH_SHORT).show();
+            }
+        });
+        return restaurants;
     }
 
     private ArrayList<ItemRestaurant> getMockedData() {
@@ -82,10 +113,11 @@ public class RestaurantsActivity extends AppCompatActivity implements Restaurant
 
     private void showProgressBar(ContentLoadingProgressBar progressBar) {
 
-            new Handler().postDelayed(() -> {
+           /* new Handler().postDelayed(() -> {
                 progressBar.show();
                 progressBar.hide();
-            }, 1500);
+            }, 1500);*/
+          progressBar.show();
     }
 
 
