@@ -21,18 +21,18 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
 
     private ArrayList<Restaurant> restaurants;
     private Context context;
-
-    public void setRestaurants(ArrayList<Restaurant> restaurants) {
-        this.restaurants = restaurants;
-    }
-
     private OnRestaurantClickListener onRestaurantClickListener;
+
 
     public RestaurantsAdapter(ArrayList<Restaurant> restaurants, Context context, OnRestaurantClickListener onRestaurantClickListener) {
         this.restaurants = restaurants;
         this.context = context;
         this.onRestaurantClickListener = onRestaurantClickListener;
         notifyDataSetChanged();
+    }
+
+    public void setRestaurants(ArrayList<Restaurant> restaurants) {
+        this.restaurants = restaurants;
     }
 
     @NonNull
