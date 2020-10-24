@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diana.restaurantsapplication.R;
+import com.example.diana.restaurantsapplication.adapters.RestaurantsAdapter;
 import com.example.diana.restaurantsapplication.models.ItemRestaurant;
 import com.example.diana.restaurantsapplication.models.Restaurant;
 import com.example.diana.restaurantsapplication.server.RestaurantsServiceProvider;
@@ -45,14 +46,8 @@ public class RestaurantsActivity extends AppCompatActivity implements Restaurant
 
         initView();
 
-       // setupWindowAnimations();
     }
 
-    private void setupWindowAnimations() {
-        Fade fade = new Fade(Gravity.START);
-        fade.setDuration(1000);
-        getWindow().setEnterTransition(fade);
-    }
 
     private void initView() {
 
@@ -113,10 +108,6 @@ public class RestaurantsActivity extends AppCompatActivity implements Restaurant
 
     private void showProgressBar(ContentLoadingProgressBar progressBar) {
 
-           /* new Handler().postDelayed(() -> {
-                progressBar.show();
-                progressBar.hide();
-            }, 1500);*/
           progressBar.show();
     }
 

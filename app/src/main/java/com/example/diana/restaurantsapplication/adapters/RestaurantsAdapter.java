@@ -1,4 +1,4 @@
-package com.example.diana.restaurantsapplication.restaurants;
+package com.example.diana.restaurantsapplication.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -58,7 +58,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         return restaurants != null ? restaurants.size(): 0;
     }
 
-    public class RestaurantsViewHolder extends RecyclerView.ViewHolder{
+    public static class RestaurantsViewHolder extends RecyclerView.ViewHolder{
 
         private AppCompatImageView image;
         private TextView title;

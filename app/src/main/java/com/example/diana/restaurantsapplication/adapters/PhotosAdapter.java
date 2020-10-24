@@ -1,4 +1,4 @@
-package com.example.diana.restaurantsapplication.restaurants;
+package com.example.diana.restaurantsapplication.adapters;
 
 
 import android.content.Context;
@@ -44,7 +44,7 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.PhotoViewH
         return photos != null ? photos.size() : 0;
     }
 
-    public class PhotoViewHolder extends RecyclerView.ViewHolder {
+    public static class PhotoViewHolder extends RecyclerView.ViewHolder {
 
         private AppCompatImageView photo;
 

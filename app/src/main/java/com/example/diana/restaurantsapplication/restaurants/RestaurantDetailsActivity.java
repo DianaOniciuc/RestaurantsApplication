@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diana.restaurantsapplication.R;
+import com.example.diana.restaurantsapplication.adapters.PhotosAdapter;
 import com.example.diana.restaurantsapplication.models.Photo;
 import com.example.diana.restaurantsapplication.models.Restaurant;
 
