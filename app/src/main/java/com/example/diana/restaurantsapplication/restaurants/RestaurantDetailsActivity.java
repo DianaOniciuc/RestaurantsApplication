@@ -4,7 +4,6 @@ import android.content.Intent;
 
 import android.os.Bundle;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -26,7 +25,6 @@ import com.example.diana.restaurantsapplication.util.SharedPrefUtil;
 
 import java.util.ArrayList;
 
-import static com.example.diana.restaurantsapplication.util.Constants.LOG_TAG;
 import static com.example.diana.restaurantsapplication.util.Constants.RESTAURANT_ID;
 import static com.example.diana.restaurantsapplication.util.Constants.RESTAURANT_KEY;
 
@@ -113,13 +111,12 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                 item.setIcon(R.drawable.ic_baseline_favorite_24);
                 prefUtil.removeFromPreferences(restaurantPrefKey);
                 isBookmarked = false;
-                return true;
             }else {
                 item.setIcon(R.drawable.ic_baseline_favorite_red_24);
                 prefUtil.addToPreferences(restaurantPrefKey, restaurant.getName());
                 isBookmarked = true;
-                return true;
             }
+            return true;
         }
 
         return super.onOptionsItemSelected(item);

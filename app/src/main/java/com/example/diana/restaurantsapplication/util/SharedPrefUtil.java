@@ -2,9 +2,6 @@ package com.example.diana.restaurantsapplication.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
-
-import static com.example.diana.restaurantsapplication.util.Constants.LOG_TAG;
 
 
 public final class SharedPrefUtil {

@@ -3,9 +3,6 @@ package com.example.diana.restaurantsapplication.restaurants;
 import android.content.Intent;
 import android.os.Bundle;
 
-import android.transition.Fade;
-
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -17,13 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.diana.restaurantsapplication.R;
 import com.example.diana.restaurantsapplication.adapters.RestaurantsAdapter;
-import com.example.diana.restaurantsapplication.models.ItemRestaurant;
 import com.example.diana.restaurantsapplication.models.Restaurant;
 import com.example.diana.restaurantsapplication.server.RestaurantsServiceProvider;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
