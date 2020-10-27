@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -111,10 +112,12 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
                 item.setIcon(R.drawable.ic_baseline_favorite_24);
                 prefUtil.removeFromPreferences(restaurantPrefKey);
                 isBookmarked = false;
+                Toast.makeText(this, "Removed from Favorites", Toast.LENGTH_SHORT).show();
             }else {
                 item.setIcon(R.drawable.ic_baseline_favorite_red_24);
                 prefUtil.addToPreferences(restaurantPrefKey, restaurant.getName());
                 isBookmarked = true;
+                Toast.makeText(this, "Added to Favorites", Toast.LENGTH_SHORT).show();
             }
             return true;
         }
