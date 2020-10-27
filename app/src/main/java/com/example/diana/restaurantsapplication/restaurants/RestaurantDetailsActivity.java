@@ -10,10 +10,9 @@ import android.view.MenuItem;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,19 +21,26 @@ import com.example.diana.restaurantsapplication.adapters.PhotosAdapter;
 import com.example.diana.restaurantsapplication.models.Photo;
 import com.example.diana.restaurantsapplication.models.Restaurant;
 import com.example.diana.restaurantsapplication.util.SharedPrefUtil;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
 import static com.example.diana.restaurantsapplication.util.Constants.RESTAURANT_ID;
 import static com.example.diana.restaurantsapplication.util.Constants.RESTAURANT_KEY;
 
-public class RestaurantDetailsActivity extends AppCompatActivity {
+public class RestaurantDetailsActivity extends AppCompatActivity implements OnMapReadyCallback {
     private Restaurant restaurant;
     private Intent intent;
     private Toolbar toolbar;
     private SharedPrefUtil prefUtil;
     private String restaurantPrefKey;
     private boolean isBookmarked;
+    private MapView mapView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,13 +48,17 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_restaurant_details);
         initView();
+
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
+        mapView.onResume();
     }
 
     private void initView() {
 
         prefUtil = new SharedPrefUtil(this);
 
-        AppCompatImageView image =  findViewById(R.id.appCompatImageView);
+        mapView = findViewById(R.id.restaurant_detail_map);
         AppCompatTextView title = findViewById(R.id.restaurant_detail_title);
         RecyclerView photos = findViewById(R.id.restaurant_gallery_rv);
         AppCompatTextView subtitle = findViewById(R.id.restaurant_detail_subtitle);
@@ -58,10 +68,10 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
              restaurant = (Restaurant) intent.getSerializableExtra(RESTAURANT_KEY);
         }
 
-        image.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_launcher_background));
-        title.setText(restaurant.getName());
-        subtitle.setText(restaurant.getDescription());
-
+        if(restaurant != null) {
+            title.setText(restaurant.getName());
+            subtitle.setText(restaurant.getDescription());
+        }
         photos.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         photos.setHasFixedSize(true);
 
@@ -136,4 +146,10 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        LatLng coordinates = new LatLng(restaurant.getLatitude(), restaurant.getLongitude());
+        googleMap.addMarker(new MarkerOptions().position(coordinates).title(restaurant.getName()));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates,15));
+    }
 }
