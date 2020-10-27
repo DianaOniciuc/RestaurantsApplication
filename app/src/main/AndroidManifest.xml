@@ -18,7 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".restaurants.RestaurantDetailsActivity"/>
+        <activity android:name=".restaurants.RestaurantDetailsActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
+
+
     </application>
 
 </manifest>

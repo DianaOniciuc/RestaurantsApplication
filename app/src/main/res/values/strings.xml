@@ -5,4 +5,5 @@
     <string name="restaurants_activity">Restaurants Activity</string>
     <string name="splash_activity">Splash Activity</string>
     <string name="get_restaurants_error">Error getting restaurant list</string>
+    <string name="favorite">Favorite</string>
 </resources>

@@ -1,29 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/details_scroll_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/outer_constraint_layout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/restaurant_details_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:title="title"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/appCompatImageView"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurant_details_toolbar"
+        app:layout_constraintBottom_toTopOf="@id/map_guideline"
+        tools:src="@tools:sample/avatars"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/map_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appCompatImageView"
+        app:layout_constraintBottom_toTopOf="@id/details_scroll_view"
+        app:layout_constraintGuide_percent="0.4"
+        />
+
+    <ScrollView
+        android:id="@+id/details_scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/outer_constraint_layout"
+        app:layout_constraintEnd_toEndOf="@id/outer_constraint_layout"
+        app:layout_constraintTop_toBottomOf="@id/map_guideline"
+        app:layout_constraintBottom_toBottomOf="@id/outer_constraint_layout"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/details_constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintEnd_toEndOf="@id/details_constraint_layout"
-            app:layout_constraintStart_toStartOf="@id/details_constraint_layout"
-            app:layout_constraintTop_toTopOf="@id/details_constraint_layout"
-            app:layout_constraintBottom_toTopOf="@id/map_guideline"
-            tools:src="@tools:sample/avatars"
-            />
-
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/restaurant_detail_title"
@@ -38,7 +72,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/margin_start_guideline"
             app:layout_constraintEnd_toStartOf="@id/margin_end_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/map_guideline"
+            app:layout_constraintTop_toTopOf="@id/details_constraint_layout"
             app:layout_constraintBottom_toTopOf="@id/separator"
             tools:text="@tools:sample/lorem/random" />
 
@@ -98,18 +132,6 @@
             />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/map_guideline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@id/details_constraint_layout"
-            app:layout_constraintEnd_toEndOf="@id/details_constraint_layout"
-            app:layout_constraintTop_toBottomOf="@id/appCompatImageView"
-            app:layout_constraintBottom_toTopOf="@id/restaurant_detail_title"
-            app:layout_constraintGuide_begin="200dp"
-            />
-
-        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/margin_start_guideline"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -125,3 +147,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
