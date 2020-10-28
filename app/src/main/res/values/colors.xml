@@ -5,4 +5,8 @@
     <color name="colorAccent">#D81B60</color>
     <color name="background_photo_color">#E0E0E0</color>
     <color name="white">#FFFFFF</color>
+    <color name="cPrimary">#7e57c2</color>
+    <color name="cPrimaryDark">#4d2c91</color>
+    <color name="cAccent">#c56000</color>
+    <color name="ic_splash_screen_background">#FF8F00</color>
 </resources>
